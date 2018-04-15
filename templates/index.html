@@ -10,6 +10,12 @@
 
 <body>
     <p>Hello, {{.Name}}</p>
+
+    {{if .DBStatus}}
+    <p>Database connected</p>
+    {{else}}
+    <p>Database not connected</p>
+    {{end}}
 </body>
 
 </html>
