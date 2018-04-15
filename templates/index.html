@@ -46,6 +46,12 @@
                         const result = parsed[i];
                         const tr = document.createElement("tr");
                         tr.style.textAlign = "center"
+                        tr.onclick = function rowClicked() {
+                            $.ajax({
+                                url: "/books/add?id=" + result.ID,
+                                method: "GET"
+                            });
+                        }
 
                         const tdt = document.createElement("td");
                         tdt.style.textAlign = "left"
@@ -68,21 +74,13 @@
                         tr.append(tdy)
                         tr.append(tdi)
 
-                        tr.onclick = rowClicked(result.ID)
-
                         searchResults.append(tr);
                     }
                 }
             });
             return false;
         };
-        function rowClicked(id) {
-            console.log(id)
-            $.ajax({
-                url: "/books/add?id=" + id,
-                method: "GET"
-            });
-        }
+
     </script>
 </body>
 
