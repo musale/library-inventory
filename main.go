@@ -15,8 +15,8 @@ import (
 
 var db *sql.DB
 
-// ClassifyApiUrl URL
-const ClassifyApiUrl = "http://classify.oclc.org/classify2/Classify"
+// ClassifyAPIURL URL
+const ClassifyAPIURL = "http://classify.oclc.org/classify2/Classify"
 
 // Book structure
 type Book struct {
@@ -166,7 +166,7 @@ func verifyDatabase(w http.ResponseWriter, r *http.Request, next http.HandlerFun
 
 func fetch(id string) (BookResponse, error) {
 	var b BookResponse
-	body, err := classifyAPI(ClassifyApiUrl + "?owi=" + url.QueryEscape(id) + "&summary=true")
+	body, err := classifyAPI(ClassifyAPIURL + "?owi=" + url.QueryEscape(id) + "&summary=true")
 	if err != nil {
 		return b, err
 	}
@@ -176,7 +176,7 @@ func fetch(id string) (BookResponse, error) {
 
 func search(query string) ([]SearchResult, error) {
 	var s SearchResponse
-	body, err := classifyAPI(ClassifyApiUrl + "?title=" + url.QueryEscape(query) + "&summary=true")
+	body, err := classifyAPI(ClassifyAPIURL + "?title=" + url.QueryEscape(query) + "&summary=true")
 	if err != nil {
 		return s.Results, nil
 	}
@@ -186,7 +186,7 @@ func search(query string) ([]SearchResult, error) {
 
 func find(id string) (ClassifyBookResponse, error) {
 	var c ClassifyBookResponse
-	body, err := classifyAPI(ClassifyApiUrl + "?summary=true&owi=" + url.QueryEscape(id))
+	body, err := classifyAPI(ClassifyAPIURL + "?summary=true&owi=" + url.QueryEscape(id))
 
 	if err != nil {
 		return ClassifyBookResponse{}, err
