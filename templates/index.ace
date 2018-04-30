@@ -66,8 +66,8 @@ body
   = javascript
       function deleteBook(pk) {
       $.ajax({
-        method: "GET",
-        url: "/books/delete?pk=" + pk,
+        method: "DELETE",
+        url: "/books/" + pk,
         success: function() {
           $("#book-row-" + pk).remove();
         }
@@ -98,8 +98,8 @@ body
             tr.style.textAlign = "center";
             tr.onclick = function rowClicked() {
               $.ajax({
-                url: "/books/add?id=" + result.ID,
-                method: "GET"
+                url: "/books?id=" + result.ID,
+                method: "PUT"
               });
             };
             const tdt = document.createElement("td");
